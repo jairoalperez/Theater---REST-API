@@ -24,6 +24,10 @@ namespace Actors_RestAPI.Helpers
         {
             public const string NotFound
                                 = "No actors found";
+            public const string Created
+                                = "Actor created successfully";
+            public const string Updated
+                                = "Actor updated successfully";
         }
     }
 }

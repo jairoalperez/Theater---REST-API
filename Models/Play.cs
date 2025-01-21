@@ -9,5 +9,6 @@ namespace Actors_RestAPI.Models
         public string Description { get; set; } = string.Empty;
         public int ReferenceId { get; set; }
         public string? Poster { get; set; }
+        public string? ScriptLink { get; set; }
     }
 }

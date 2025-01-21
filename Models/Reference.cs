@@ -10,5 +10,6 @@ namespace Actors_RestAPI.Models
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; } = string.Empty;
         public string? Image { get; set; }
+        public string? Link { get; set; }
     }
 }

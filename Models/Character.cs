@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace Actors_RestAPI.Models
 {
     public class Character
@@ -13,6 +15,6 @@ namespace Actors_RestAPI.Models
 
         public Actor? Actor { get; set; }
 
-        public required Play Play { get; set; }
+        public Play Play { get; set; } = new Play();
     }
 }

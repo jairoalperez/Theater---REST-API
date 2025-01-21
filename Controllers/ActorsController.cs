@@ -22,7 +22,7 @@ public class ActorsController : ControllerBase
     {
         try
         {
-            var allActors = await _context.Actors.ToListAsync();
+            var allActors = await _context.Actors.Include(a => a.Characters).ToListAsync();
             if (allActors.Count < 1)
             {
                 return NotFound(Messages.Actors.NotFound);

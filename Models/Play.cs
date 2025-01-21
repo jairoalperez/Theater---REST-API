@@ -13,6 +13,8 @@ namespace Actors_RestAPI.Models
 
         public Reference? Reference { get; set; }
 
-        public List<Character> Characters { get; set; } = new List<Character>();
+        public List<Character>? Characters { get; set; } = new List<Character>();
+
+        public List<Music>? SoundTrack { get; set; } = new List<Music>();
     }
 }

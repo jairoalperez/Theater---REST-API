@@ -13,6 +13,6 @@ namespace Actors_RestAPI.Models
         public string? FrontImage { get; set; }
         public string? FullBodyImage { get; set; }
 
-        public ICollection<Character> Characters { get; set; } = new List<Character>();
+        public List<Character>? Characters { get; set; } = new List<Character>();
     }
 }

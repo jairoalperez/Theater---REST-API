@@ -10,5 +10,9 @@ namespace Actors_RestAPI.Models
         public string? Image { get; set; }
         public int ActorId { get; set; }
         public int PlayId { get; set; }
+
+        public required Actor Actor { get; set; }
+
+        public required Play Play { get; set; }
     }
 }

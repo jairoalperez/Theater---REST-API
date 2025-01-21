@@ -12,5 +12,7 @@ namespace Actors_RestAPI.Models
         public string HairColor { get; set; } = string.Empty;
         public string? FrontImage { get; set; }
         public string? FullBodyImage { get; set; }
+
+        public ICollection<Character> Characters { get; set; } = new List<Character>();
     }
 }

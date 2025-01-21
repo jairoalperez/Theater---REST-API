@@ -7,5 +7,11 @@ namespace Actors_RestAPI.Helpers
             public const string Working
                                 = "API is working"; 
         }
+
+        public static class Database
+        {
+            public const string NoConnectionString
+                                = "No connection string found in appsettings.json";
+        }
     }
 }

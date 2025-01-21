@@ -2,7 +2,7 @@ namespace Actors_RestAPI.Models
 {
     public class Actor
     {
-        public int Id { get; set; }
+        public int ActorId { get; set; }
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string DOB { get; set; } = string.Empty;

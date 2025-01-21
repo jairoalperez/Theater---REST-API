@@ -17,7 +17,62 @@ public class ActorsController : ControllerBase
         _context = context;
     }
 
-    
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAll()
+    {
+        try
+        {
+            var allActors = await _context.Actors.ToListAsync();
+            if (allActors.Count < 1)
+            {
+                return NotFound(Messages.Actors.NotFound);
+            }
 
+            return Ok(allActors);
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
+
+    [HttpGet("all/{gender}")]
+    public async Task<IActionResult> GetByGender([FromRoute] string gender)
+    {
+        try
+        {
+            var allActors = await _context.Actors.Where(a => a.Gender == gender).ToListAsync();
+            if (allActors.Count < 1)
+            {
+                return NotFound(Messages.Actors.NotFound);
+            }
+
+            return Ok(allActors);
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById([FromRoute] int id)
+    {
+        try
+        {
+            var actor = await _context.Actors.FirstOrDefaultAsync(i => i.ActorId == id);
+            if (actor == null)
+            {
+                return NotFound(Messages.Actors.NotFound);
+            }
+
+            return Ok(actor);
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
+    
     
 }

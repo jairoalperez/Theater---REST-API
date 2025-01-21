@@ -12,6 +12,10 @@ namespace Actors_RestAPI.Helpers
         {
             public const string NoConnectionString
                                 = "No connection string found in appsettings.json";
+            public const string ConnectionSuccess
+                                = "Database is connected successfully";
+            public const string ConnectionFailed
+                                = "Database connection failed";
         }
     }
 }

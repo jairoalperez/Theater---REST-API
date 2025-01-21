@@ -28,6 +28,8 @@ namespace Actors_RestAPI.Helpers
                                 = "Actor created successfully";
             public const string Updated
                                 = "Actor updated successfully";
+            public const string Deleted
+                                = "Actor deleted successfully";
         }
     }
 }

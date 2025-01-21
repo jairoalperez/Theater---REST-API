@@ -142,5 +142,28 @@ public class ActorsController : ControllerBase
         }
     }
 
-    
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        try
+        {
+            var actor = await _context.Actors.FirstOrDefaultAsync(i => i.ActorId == id);
+            if (actor == null)
+            {
+                return NotFound(Messages.Actors.NotFound);
+            }
+
+            _context.Actors.Remove(actor);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = Messages.Actors.Deleted,
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
 }

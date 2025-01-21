@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using Actors_RestAPI.Helpers;
 
 [ApiController]
 [Route("api/test")]
@@ -8,6 +8,6 @@ public class TestController : ControllerBase
     [HttpGet()]
     public IActionResult TestAPI()
     {
-        return Ok("API is working");
+        return Ok(Messages.API.Working);
     }
 }

@@ -20,7 +20,7 @@ namespace Actors_RestAPI.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DOB = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SkinColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EyeColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HairColor = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -60,7 +60,7 @@ namespace Actors_RestAPI.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
-                    Genre = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Image = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ActorId = table.Column<int>(type: "int", nullable: true),
                     PlayId = table.Column<int>(type: "int", nullable: false)

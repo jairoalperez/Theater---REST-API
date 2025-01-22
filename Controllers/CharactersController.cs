@@ -132,4 +132,30 @@ public class CharactersController : ControllerBase
             return Problem(Messages.Database.ProblemRelated, ex.Message);
         }
     }
+
+    [HttpDelete("delete/{id}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        try
+        {
+            var character = await _context.Characters.FirstOrDefaultAsync(i => i.CharacterId == id);
+            if (character == null)
+            {
+                return NotFound(Messages.Characters.NotFound);
+            }
+
+            _context.Characters.Remove(character);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = Messages.Characters.Deleted,
+                Character = character
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
 }

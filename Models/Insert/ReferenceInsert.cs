@@ -1,18 +1,24 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Actors_RestAPI.Models
 {
-    public class Reference
+    public class ReferenceInsert
     {
-        public int ReferenceId { get; set; }
+        [Required]
         public int PlayId { get; set; }
+        [Required]
         public string Title { get; set; } = string.Empty;
+        [Required]
         public string Description { get; set; } = string.Empty;
+        [Required]
         public string Author { get; set; } = string.Empty;
+        [Required]
         public string Type { get; set; } = string.Empty;
+        [Required]
         public DateTime ReleaseDate { get; set; }
+        [Required]
         public string Genre { get; set; } = string.Empty;
         public string? Image { get; set; }
         public string? Link { get; set; }
-
-        public Play? Play { get; set; }
     }
 }

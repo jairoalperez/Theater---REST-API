@@ -1,14 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace Actors_RestAPI.Models
 {
-    public class Music
+    public class MusicInsert
     {
-        public int MusicId { get; set; }
+        [Required]
         public int PlayId { get; set; }
+        [Required]
         public string Title { get; set; } = string.Empty;
+        [Required]
         public string Artist { get; set; } = string.Empty;
         public string? Image { get; set; }
         public string? MusicLink { get; set; }
-
-        public Play? Play { get; set; }
     }
 }

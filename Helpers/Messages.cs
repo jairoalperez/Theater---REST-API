@@ -45,5 +45,19 @@ namespace Actors_RestAPI.Helpers
             public const string AlreadyExists
                                 = "Play already exists";
         }
+
+        public static class Characters
+        {
+            public const string NotFound
+                                = "No characters found";
+            public const string Created
+                                = "Character created successfully";
+            public const string Updated
+                                = "Character updated successfully";
+            public const string Deleted
+                                = "Character deleted successfully";
+            public const string AlreadyExists
+                                = "Character already exists";
+        }
     }
 }

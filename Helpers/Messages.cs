@@ -31,5 +31,19 @@ namespace Actors_RestAPI.Helpers
             public const string Deleted
                                 = "Actor deleted successfully";
         }
+
+        public static class Plays
+        {
+            public const string NotFound
+                                = "No plays found";
+            public const string Created
+                                = "Play created successfully";
+            public const string Updated
+                                = "Play updated successfully";
+            public const string Deleted
+                                = "Play deleted successfully";
+            public const string AlreadyExists
+                                = "Play already exists";
+        }
     }
 }

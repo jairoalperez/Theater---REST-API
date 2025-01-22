@@ -14,7 +14,7 @@ namespace Actors_RestAPI.Models
         public int? ActorId { get; set; }
         public int PlayId { get; set; }
 
-        public Actor? Actor { get; set; }
+        public Actor Actor { get; set; } = new Actor();
 
         public Play Play { get; set; } = new Play();
     }

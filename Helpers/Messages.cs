@@ -42,6 +42,8 @@ namespace Actors_RestAPI.Helpers
                                 = "Play updated successfully";
             public const string Deleted
                                 = "Play deleted successfully";
+            public const string AlreadyExists
+                                = "Play already exists";
         }
     }
 }

@@ -1,6 +1,7 @@
 using Actors_RestAPI.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Actors_RestAPI.Models;
 
 namespace Actors_RestAPI.Controllers;
 
@@ -11,7 +12,7 @@ public class PlaysController : ControllerBase
 {
     private readonly AppDbContext _context;
 
-    private PlaysController(AppDbContext context)
+    public PlaysController(AppDbContext context)
     {
         _context = context;
     }
@@ -142,5 +143,100 @@ public class PlaysController : ControllerBase
         }
     }
 
-    
+    [HttpPost("create")]
+    public async Task<ActionResult<Play>> Create([FromBody] PlayInsert playInsert)
+    {
+        try
+        {
+            var play = await _context.Plays.FirstOrDefaultAsync(p => p.Title == playInsert.Title);
+            if (play != null)
+            {
+                return Problem(Messages.Plays.AlreadyExists);
+            }
+
+            var newPlay = new Play()
+            {
+                Title = playInsert.Title,
+                Genre = playInsert.Genre,
+                Format = playInsert.Format,
+                Description = playInsert.Description,
+                ReferenceId = playInsert.ReferenceId,
+                Poster = playInsert.Poster,
+                ScriptLink = playInsert.ScriptLink
+            };
+
+            _context.Plays.Add(newPlay);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = Messages.Plays.Created,
+                Play = newPlay
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
+
+    [HttpPut("update/{id}")]
+    public async Task<ActionResult<Play>> Edit([FromRoute] int id, [FromBody] PlayInsert playInsert)
+    {
+        try
+        {
+            var play = await _context.Plays.FirstOrDefaultAsync(i => i.PlayId == id);
+            if (play == null)
+            {
+                return NotFound(Messages.Plays.NotFound);
+            }
+
+            play.Title = playInsert.Title;
+            play.Genre = playInsert.Genre;
+            play.Format = playInsert.Format;
+            play.Description = playInsert.Description;
+            play.ReferenceId = playInsert.ReferenceId;
+            play.Poster = playInsert.Poster;
+            play.ScriptLink = playInsert.ScriptLink;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = Messages.Plays.Updated,
+                Play = play
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+
+
+    }
+
+    [HttpDelete("delete/{id}")]
+    public async Task<ActionResult<Play>> Delete([FromRoute] int id)
+    {
+        try
+        {
+            var play = await _context.Plays.FirstOrDefaultAsync(i => i.PlayId == id);
+            if (play == null)
+            {
+                return NotFound(Messages.Plays.NotFound);
+            }
+
+            _context.Plays.Remove(play);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = Messages.Plays.Deleted
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
 }

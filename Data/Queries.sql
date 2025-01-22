@@ -59,6 +59,14 @@ VALUES(
     'Three brothers tell their own story of how they found love in the most unexpected way'
 );
 
+INSERT INTO Plays (Title, Genre, Format, Description)
+VALUES(
+    'Verona',
+    'Drama',
+    'Large',
+    'A modern version of Romeo and Juliet, where the Montesco and Capuleto families are the most powerful in the city'
+)
+
 GO
 
 -- After the previous values are inserted check the ids and add them here
@@ -69,6 +77,48 @@ VALUES(
     26,
     'Male',
     1,
+    1,
+    2
+);
+
+INSERT INTO Characters (Name, Description, Age, Gender, Principal, ActorId, PlayId) 
+VALUES(
+    'Teobaldo Capuleto',
+    'He is the cousing of Juliet, he is the second in charge of the Capuleto family, he has a difficult temperament',
+    28,
+    'Male',
+    0,
+    1,
+    3
+);
+
+INSERT INTO Characters (Name, Description, Age, Gender, Principal, ActorId, PlayId) 
+VALUES(
+    'Romeo Montesco',
+    'He is the youngest son of the Montesco family, he is a dreamer and a romantic, he is in love with Juliet',
+    21,
+    'Male',
+    1,
     2,
-    1
-)
+    3
+);
+
+INSERT INTO Musics (PlayId, Title, Artist)
+VALUES(
+    3,
+    'De Musica Ligera',
+    'Soda Stereo'
+);
+
+INSERT INTO [References] (PlayId, Title, Author, Description, Type, ReleaseDate, Genre)
+VALUES(
+    3,
+    'Romeo and Juliet',
+    'William Shakespeare',
+    'The most famous love story of all time',
+    'Book',
+    '1597-01-01',
+    'Drama'
+);
+
+GO

@@ -67,5 +67,37 @@ public class CharactersController : ControllerBase
         }
     }
 
+    [HttpPost("create")]
+    public async Task<ActionResult<Character>> Create([FromBody] CharacterInsert characterInsert)
+    {
+        try
+        {
+            var newCharacter = new Character()
+            {
+                Name = characterInsert.Name,
+                Description = characterInsert.Description,
+                Age = characterInsert.Age,
+                Gender = characterInsert.Gender,
+                Principal = characterInsert.Principal,
+                Image = characterInsert.Image,
+                ActorId = characterInsert.ActorId,
+                PlayId = characterInsert.PlayId
+            }; 
+
+            _context.Characters.Add(newCharacter);
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = Messages.Characters.Created,
+                Character = newCharacter
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
+
     
 }

@@ -22,7 +22,21 @@ public class ActorsController : ControllerBase
     {
         try
         {
-            var allActors = await _context.Actors.Include(a => a.Characters).ToListAsync();
+            var actorsQuery = _context.Actors.Include(a => a.Characters);
+
+            var allActors = await actorsQuery.Select(a => new
+            {
+                a.ActorId,
+                a.FirstName,
+                a.LastName,
+                a.DOB,
+                a.Gender,
+                a.FrontImage,
+                Characters = a.Characters.Count,
+                Principals = a.Characters.Count(c => c.Principal == true)
+            })
+            .ToListAsync();
+
             if (allActors.Count < 1)
             {
                 return NotFound(Messages.Actors.NotFound);
@@ -41,7 +55,21 @@ public class ActorsController : ControllerBase
     {
         try
         {
-            var allActors = await _context.Actors.Where(a => a.Gender == gender).ToListAsync();
+            var actorsQuery = _context.Actors.Where(a => a.Gender == gender).Include(a => a.Characters);
+
+            var allActors = await actorsQuery.Select(a => new
+            {
+                a.ActorId,
+                a.FirstName,
+                a.LastName,
+                a.DOB,
+                a.Gender,
+                a.FrontImage,
+                Characters = a.Characters.Count,
+                Principals = a.Characters.Count(c => c.Principal == true)
+            })
+            .ToListAsync();
+
             if (allActors.Count < 1)
             {
                 return NotFound(Messages.Actors.NotFound);
@@ -60,7 +88,32 @@ public class ActorsController : ControllerBase
     {
         try
         {
-            var actor = await _context.Actors.FirstOrDefaultAsync(i => i.ActorId == id);
+            var actor = await _context.Actors.Where(a => a.ActorId == id).Include(a => a.Characters).ThenInclude(c => c.Play)
+            .Select(a => new 
+            {
+                a.ActorId,
+                a.FirstName,
+                a.LastName,
+                a.DOB,
+                a.Gender,
+                a.SkinColor,
+                a.EyeColor,
+                a.HairColor,
+                a.FrontImage,
+                a.FullBodyImage,
+                Characters = a.Characters.Select(c => new
+                {
+                    c.CharacterId,
+                    c.Name,
+                    c.Principal,
+                    c.Image,
+                    c.PlayId,
+                    PlayTitle = c.Play.Title,
+                    PlayFormat = c.Play.Format
+                })
+            })
+            .FirstOrDefaultAsync();
+            
             if (actor == null)
             {
                 return NotFound(Messages.Actors.NotFound);

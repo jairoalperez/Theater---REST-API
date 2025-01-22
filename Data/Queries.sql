@@ -62,12 +62,13 @@ VALUES(
 GO
 
 -- After the previous values are inserted check the ids and add them here
-INSERT INTO Characters (Name, Description, Age, Gender, ActorId, PlayId) 
+INSERT INTO Characters (Name, Description, Age, Gender, Principal, ActorId, PlayId) 
 VALUES(
     'Juan Pedro Castello Branco',
     'He is the second of two brothers, Musician, but not a regular one, he is composer and singer of TV jingles',
     26,
     'Male',
     1,
+    2,
     1
 )

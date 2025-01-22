@@ -99,5 +99,37 @@ public class CharactersController : ControllerBase
         }
     }
 
-    
+    [HttpPut("update/{id}")]
+    public async Task<ActionResult<Character>> Edit([FromRoute] int id, [FromBody] CharacterInsert characterInsert)
+    {
+        try
+        {
+            var character = await _context.Characters.FirstOrDefaultAsync(i => i.CharacterId == id);
+            if (character == null)
+            {
+                return NotFound(Messages.Characters.NotFound);
+            }
+
+            character.Name = characterInsert.Name;
+            character.Description = characterInsert.Description;
+            character.Age = characterInsert.Age;
+            character.Gender = characterInsert.Gender;
+            character.Principal = characterInsert.Principal;
+            character.Image = characterInsert.Image;
+            character.ActorId = characterInsert.ActorId;
+            character.PlayId = characterInsert.PlayId;
+
+            await _context.SaveChangesAsync();
+
+            return Ok(new
+            {
+                Message = Messages.Characters.Updated,
+                Character = character
+            });
+        }
+        catch (Exception ex)
+        {
+            return Problem(Messages.Database.ProblemRelated, ex.Message);
+        }
+    }
 }

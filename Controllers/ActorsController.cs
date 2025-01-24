@@ -22,9 +22,9 @@ public class ActorsController : ControllerBase
     {
         try
         {
-            var actorsQuery = _context.Actors.Include(a => a.Characters);
+            var actorsQuery = await _context.Actors.Include(a => a.Characters).ToListAsync();
 
-            var allActors = await actorsQuery.Select(a => new
+            var allActors = actorsQuery.Select(a => new
             {
                 a.ActorId,
                 a.FirstName,
@@ -32,10 +32,11 @@ public class ActorsController : ControllerBase
                 a.DOB,
                 a.Gender,
                 a.FrontImage,
+                Age = a.DOB != null ? CalculateAge.Calculate(a.DOB) : 0,
                 Characters = a.Characters.Count,
                 Principals = a.Characters.Count(c => c.Principal == true)
             })
-            .ToListAsync();
+            .ToList();
 
             if (allActors.Count < 1)
             {

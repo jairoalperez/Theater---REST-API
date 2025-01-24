@@ -66,6 +66,7 @@ public class ActorsController : ControllerBase
                 a.DOB,
                 a.Gender,
                 a.FrontImage,
+                Age = a.DOB != null ? CalculateAge.Calculate(a.DOB) : 0,
                 Characters = a.Characters.Count,
                 Principals = a.Characters.Count(c => c.Principal == true)
             })

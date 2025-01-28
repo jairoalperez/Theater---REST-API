@@ -97,13 +97,14 @@ public class ActorsController : ControllerBase
                 a.FirstName,
                 a.LastName,
                 a.DOB,
+                Age = a.DOB != null ? CalculateAge.Calculate(a.DOB) : 0,
                 a.Gender,
                 a.SkinColor,
                 a.EyeColor,
                 a.HairColor,
                 a.FrontImage,
                 a.FullBodyImage,
-                Characters = a.Characters.Select(c => new
+                Characters = a.Characters.OrderByDescending(c => c.Principal).Select(c => new
                 {
                     c.CharacterId,
                     c.Name,

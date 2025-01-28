@@ -105,7 +105,7 @@ public class PlaysController : ControllerBase
                         p.Reference.ReleaseDate,
                         p.Reference.Image
                     },
-                    Characters = p.Characters.Select(c => new
+                    Characters = p.Characters.OrderByDescending(c => c.Principal).Select(c => new
                     {
                         c.CharacterId,
                         c.Name,

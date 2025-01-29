@@ -36,6 +36,7 @@ public class ActorsController : ControllerBase
                 Characters = a.Characters.Count,
                 Principals = a.Characters.Count(c => c.Principal == true)
             })
+            .OrderByDescending(a => a.Characters)
             .ToList();
 
             if (allActors.Count < 1)
@@ -91,7 +92,7 @@ public class ActorsController : ControllerBase
         try
         {
             var actor = await _context.Actors.Where(a => a.ActorId == id).Include(a => a.Characters).ThenInclude(c => c.Play)
-            .Select(a => new 
+            .Select(a => new
             {
                 a.ActorId,
                 a.FirstName,
@@ -116,7 +117,7 @@ public class ActorsController : ControllerBase
                 })
             })
             .FirstOrDefaultAsync();
-            
+
             if (actor == null)
             {
                 return NotFound(Messages.Actors.NotFound);

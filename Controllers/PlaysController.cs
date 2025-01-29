@@ -32,6 +32,7 @@ public class PlaysController : ControllerBase
                 p.Poster,
                 Characters = p.Characters.Count
             })
+            .OrderByDescending(p => p.Characters)
             .ToListAsync();
 
             if (allPlays.Count < 1)

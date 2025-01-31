@@ -6,7 +6,7 @@ namespace Actors_RestAPI.Models
     {
         public int CharacterId { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string? Description { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; } = string.Empty;
         public bool Principal { get; set; }

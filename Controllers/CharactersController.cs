@@ -35,7 +35,7 @@ public class CharactersController : ControllerBase
                 c.Gender,
                 c.Principal,
                 c.Image,
-                Actor = new 
+                Actor = c.ActorId == null ? null : new 
                 {
                     c.Actor.ActorId,
                     c.Actor.FirstName,

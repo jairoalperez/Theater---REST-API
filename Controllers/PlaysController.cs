@@ -106,13 +106,13 @@ public class PlaysController : ControllerBase
                         p.Reference.ReleaseDate,
                         p.Reference.Image
                     },
-                    Characters = p.Characters.OrderByDescending(c => c.Principal).Select(c => new
+                    Characters = p.Characters == null ? null : p.Characters.OrderByDescending(c => c.Principal).Select(c => new
                     {
                         c.CharacterId,
                         c.Name,
                         c.Principal,
                         c.Image,
-                        Actor = new
+                        Actor = c.ActorId == null ? null : new
                         {
                             c.Actor.ActorId,
                             c.Actor.FirstName,
@@ -120,7 +120,7 @@ public class PlaysController : ControllerBase
                             c.Actor.FrontImage
                         }
                     }),
-                    SoundTrack = p.SoundTrack.Select(m => new
+                    SoundTrack = p.SoundTrack == null ? null : p.SoundTrack.Select(m => new
                     {
                         m.MusicId,
                         m.Title,

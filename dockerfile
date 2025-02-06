@@ -13,7 +13,7 @@ RUN dotnet publish -c Release -o /out
 # Uses runtime image for executing the API
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
-COPY --from=build /out .
+COPY --from=build /out ./
 
 # Exposes the 8080 port for Railway
 ENV ASPNETCORE_URLS=http://+:8080

@@ -10,6 +10,7 @@
 # Ignore build directories
 bin/
 obj/
+/out/
 TestResults/
 *.nupkg
 *.snupkg

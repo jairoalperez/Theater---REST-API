@@ -1,12 +1,11 @@
-version: '3.8'
-
 services:
   api:
     build: .
+    image: theater-api
     ports:
       - "8080:8080"
     volumes:
-      - .:/app
+      - .:/out
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     restart: always

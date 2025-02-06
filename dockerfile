@@ -20,4 +20,4 @@ ENV ASPNETCORE_URLS=http://+:8080
 EXPOSE 8080
 
 # Comand for executing the API
-CMD ["dotnet", "Actors_RestAPI.dll"]
+CMD ["dotnet", "Actors-RestAPI.dll"]

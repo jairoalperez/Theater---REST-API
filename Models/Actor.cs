@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Actors_RestAPI.Models
 {
+    [Table("actors")]
     public class Actor
     {
         public int ActorId { get; set; }

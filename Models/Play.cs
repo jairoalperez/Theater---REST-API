@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Actors_RestAPI.Models
 {
+    [Table("plays")]
     public class Play
     {
         public int PlayId { get; set; }
@@ -12,10 +15,7 @@ namespace Actors_RestAPI.Models
         public string? ScriptLink { get; set; }
 
         public Reference? Reference { get; set; }
-
-        public List<Character> Characters { get; set; } = new List<Character>();
-
-        public List<Music> SoundTrack { get; set; } = new List<Music>();
-
+        public List<Character> Characters { get; set; } = new();
+        public List<Music> SoundTrack { get; set; } = new();
     }
 }

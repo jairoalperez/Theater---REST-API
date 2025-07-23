@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Actors_RestAPI.Data;
 using Actors_RestAPI.Helpers;
 using DotNetEnv;
+
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,9 +22,9 @@ var rawConnectionString = builder.Configuration.GetConnectionString("TheaterDB")
                             ?? throw new InvalidOperationException(Messages.Database.NoConnectionString);
 var connectionString = ReplaceConnectionString.BuildConnectionString(rawConnectionString);
 
-// Configuration of EFC with SQL Server
+// Configuration of EFC with MySQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(connectionString)
+    options.UseMySql(connectionString, new MySqlServerVersion(new Version(10, 5, 0)))
 );
 
 builder.Services.AddControllers()
@@ -36,8 +37,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-app.UseCors("AllowAll");
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -47,6 +46,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapControllers();
+
+app.UseCors("AllowAll");
 
 app.Run();
 

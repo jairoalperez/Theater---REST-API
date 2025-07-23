@@ -1,5 +1,8 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Actors_RestAPI.Models
 {
+    [Table("references")]
     public class Reference
     {
         public int ReferenceId { get; set; }

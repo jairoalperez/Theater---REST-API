@@ -1,7 +1,9 @@
 using System.Text.Json.Serialization;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Actors_RestAPI.Models
 {
+    [Table("characters")]
     public class Character
     {
         public int CharacterId { get; set; }

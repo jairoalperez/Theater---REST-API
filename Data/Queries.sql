@@ -2,7 +2,7 @@
 CREATE DATABASE Theater;
 
 -- Use Database
-USE ToDoList;
+USE Theater;
 GO
 
 -- ON PROJECT TERMINAL EXECUTE NEXT TWO COMMANDS

@@ -136,8 +136,13 @@ public class ActorsController : ControllerBase
     {
         try
         {
+            var lastActorId = await _context.Actors.MaxAsync(a => (int?)a.ActorId) ?? 0;
+            var newActorId = lastActorId + 1;
+
+
             var newActor = new Actor()
             {
+                ActorId = newActorId,
                 FirstName = actorInsert.FirstName,
                 LastName = actorInsert.LastName,
                 DOB = actorInsert.DOB,

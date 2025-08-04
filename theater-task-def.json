@@ -10,7 +10,7 @@
       "image": "095808160027.dkr.ecr.us-east-2.amazonaws.com/theater-api:latest",
       "portMappings": [
         {
-          "containerPort": 80,
+          "containerPort": 8080,
           "protocol": "tcp"
         }
       ],

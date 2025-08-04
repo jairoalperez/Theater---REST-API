@@ -1,0 +1,20 @@
+{
+  "family": "theater-task",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "256",
+  "memory": "512",
+  "containerDefinitions": [
+    {
+      "name": "theater-api",
+      "image": "095808160027.dkr.ecr.us-east-2.amazonaws.com/theater-api:latest",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true
+    }
+  ]
+}

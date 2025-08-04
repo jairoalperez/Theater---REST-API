@@ -4,6 +4,7 @@
   "requiresCompatibilities": ["FARGATE"],
   "cpu": "256",
   "memory": "512",
+  "executionRoleArn": "arn:aws:iam::095808160027:role/ecsTaskExecutionRole",
   "containerDefinitions": [
     {
       "name": "theater-api",
@@ -13,8 +14,7 @@
           "containerPort": 8080,
           "protocol": "tcp"
         }
-      ],
-      "essential": true
+      ]
     }
   ]
 }
